@@ -1,0 +1,129 @@
+#include <iostream>
+#include <vector>
+
+class Point {
+private:
+    int x;
+    int y;
+
+public:
+    Point() {}
+    Point(int _x, int _y) {
+        x = _x;
+        y = _y;
+    }
+
+    Point operator + (Point& _p) {
+        int tmp_x = x + _p.get_x();
+        int tmp_y = y + _p.get_y();
+        Point point(tmp_x, tmp_y);
+        return point;
+    }
+
+    bool operator == (Point& _p)
+    { 
+        if (x == _p.get_x() && y == _p.get_y())
+        {
+            return true;
+        }
+        else { return false; }
+        
+    }
+    bool operator != (Point& _p)
+    { 
+        if (x != _p.get_x() && y != _p.get_y())
+        {
+            return true;
+        }
+        else { return false; }
+        
+    } 
+
+    bool operator > (Point& _p)
+    {
+        if (x > _p.get_x() && y > _p.get_y())
+        {
+            return true;
+        }
+        else { return false; }
+    }
+    bool operator < (Point& _p)
+    {
+        if (x < _p.get_x() && y < _p.get_y())
+        {
+            return true;
+        }
+        else { return false; }
+    }
+    bool operator >= (Point& _p)
+    {
+
+        if (x*y >= _p.get_x() * _p.get_y())
+        {
+            return true;
+        }
+        else { return false; }
+    }
+    bool operator <= (Point& _p)
+    {
+
+        if (x * y <= _p.get_x() * _p.get_y())
+        {
+            return true;
+        }
+        else { return false; }
+    }
+
+
+
+    int get_x() {
+        return x;
+    }
+
+    int get_y() {
+        return y;
+    }
+
+    void show_coord() {
+        std::cout << x << ';' << y << std::endl;
+    } 
+};
+
+
+
+
+int create_coord()
+{
+    return rand() % (100 - 1 + 1) + 1;
+}
+
+Point create_point()
+{
+    int x = create_coord();
+    int y = create_coord();
+    return Point(x, y);
+
+}
+
+int main() {
+    setlocale(0, "");
+    srand(time(NULL));
+    std::vector<Point> points;
+    
+    for (int i = 0; i < 10; i++)
+    {
+        points.push_back(create_point());
+    }
+
+    for (auto point : points)
+    {
+        point.show_coord();
+    }
+
+   /* if (p1 > p3)
+    {
+        std::cout << "Больше" << std::endl;
+    }
+    else { std::cout << "Не больше" << std::endl; }*/
+    return 0;
+}
